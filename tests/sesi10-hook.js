@@ -20,15 +20,14 @@ describe('SauceDemo Automation', function () {
             .setChromeService(service)
             .build();
 
+        // membuka situs saucedemo
         await driver.get('https://www.saucedemo.com');
-        console.log('Browser membuka halaman SauceDemo.');
 
         // login sebelum test dengan memanggil function form-login.js
         await inputFormLogin(driver, 'standard_user', 'secret_sauce');
-        console.log('Login berhasil');
     });
 
-    // tutup browser setiap mengeksekusi test case dengan Hook AfterEach
+    // tutup 
     afterEach(async function () {
         if (driver) {
             await driver.quit();
@@ -57,7 +56,7 @@ describe('SauceDemo Automation', function () {
         await priceLowToHigh.click();
         console.log('Dropdown diubah ke "Price (low to high)".');
 
-        await driver.sleep(2000); // pakai sleep agar freeze sebentar untuk cek dan debug
+        await driver.sleep(1000); // pakai sleep agar freeze sebentar untuk cek dan debug
 
         const firstPrice = await driver.findElement(By.css('.inventory_item_price'));
         const priceText = await firstPrice.getText(); // misal "$7.99"
